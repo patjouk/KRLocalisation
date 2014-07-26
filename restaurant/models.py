@@ -3,15 +3,15 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Restaurant(models.Model):
-    num_entree = models.Field.primary_key=True
+    num_entree = models.IntegerField(primary_key=True)
     nom = models.CharField(max_length=100)
     nom_coreen = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
     code_postal = models.SmallIntegerField()
     adresse = models.CharField(max_length=100)
-    num_tel = models.SmallIntegerField()
-    num_siret = models.BigIntegerField()
+    num_tel = models.CharField(max_length=100)
+    num_siret = models.CharField(max_length=100)
     proprietaire = models.CharField(max_length=100)
     proprietaire_coreen = models.CharField(max_length=100)
     date_immatriculation = models.DateField()
