@@ -12,6 +12,12 @@ def to_bool(s):
     else:
         raise Exception('Cannot convert {} into boolean'.format(s))
 
+def to_date(s):
+    if s in ['inconnu', 'aucune']:
+        return None
+    else:
+        return datetime.datetime.strptime(s, "%d/%m/%Y").date()
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         with open('/home/nokomis/Thèse/base de données/base_restau.txt', newline='') as f:
@@ -32,8 +38,8 @@ class Command(BaseCommand):
                                num_siret=row[8],
                                proprietaire=row[9],
                                proprietaire_coreen=row[10],
-                               #date_immatriculation=datetime.datetime.strptime(row[11], "%d/%m/%Y").date() if row[11] else None,
-                               #date_radiation=datetime.datetime.strptime(row[12], "%d/%m/%Y").date() if row[12] else None,
+                               date_immatriculation=to_date(row[11]),
+                               date_radiation=to_date(row[12]),
                                site_web=row[13],
                                statut_societe=row[14],
                                contact=to_bool(row[15]),
