@@ -20,6 +20,9 @@ def to_date(s):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        if Restaurant.objects.all().count():
+            print("La base de donnée n'est pas vide. Merci de la vider à la main ou d'arrêter de faire n'importe quoi, va te coucher maintenant.")
+            return
         with open('/home/nokomis/Thèse/base de données/base_restau.txt', newline='') as f:
             reader = csv.reader(f, delimiter=';')
             i = iter(reader)
