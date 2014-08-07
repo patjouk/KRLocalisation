@@ -4,6 +4,14 @@ import datetime
 from django.core.management import BaseCommand
 from restaurant.models import Restaurant
 
+def to_bool(s):
+    if s in ['1', 'True']:
+        return True
+    elif s in ['0', 'False']:
+        return False
+    else:
+        raise Exception('Cannot convert {} into boolean'.format(s))
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         with open('/home/nokomis/Thèse/base de données/base_restau.txt', newline='') as f:
@@ -28,12 +36,12 @@ class Command(BaseCommand):
                                #date_radiation=datetime.datetime.strptime(row[12], "%d/%m/%Y").date() if row[12] else None,
                                site_web=row[13],
                                statut_societe=row[14],
-                               #contact=row[15],
-                               #interview=row[16],
-                               #annuaire_alloparis=row[17],
-                               #annuaire_hansik=row[18],
-                               #radiation=row[19],
-                               #nolebang=row[20],
+                               contact=to_bool(row[15]),
+                               interview=to_bool(row[16]),
+                               annuaire_alloparis=to_bool(row[17]),
+                               annuaire_hansik=to_bool(row[18]),
+                               radiation=to_bool(row[19]),
+                               nolebang=to_bool(row[20]),
                                notes=row[21])
                 r.save()
             print(Restaurant.objects.all())
