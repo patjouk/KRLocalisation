@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib.gis import admin
+from djgeojson.views import GeoJSONLayerView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',

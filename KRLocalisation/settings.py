@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'KRLocalisation',
     'django_tables2',
     'django.contrib.gis',
+    'djgeojson',
+    'leaflet',
 )
 
 MIDDLEWARE_CLASSES = (

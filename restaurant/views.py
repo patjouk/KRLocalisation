@@ -5,5 +5,9 @@ from .tables import TableauRestaurant
 
 def tableau_donnees(request):
         tabrestaurants = TableauRestaurant(Restaurant.objects.order_by('nom').all())
-        RequestConfig(request, paginate={"per_page":150}).configure(tabrestaurants)
+        RequestConfig(request, paginate={"per_page":200}).configure(tabrestaurants)
         return render(request, 'restaurant/tableau_donnees.html', {"restaurants": tabrestaurants})
+
+def cartographie_simple(request):
+    restaurants = Restaurant.objects.all()
+    return render(request, 'restaurant/cartographie.html', {"restaurants": restaurants})
