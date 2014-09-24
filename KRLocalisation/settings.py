@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'restaurant',
     'KRLocalisation',
     'django_tables2',
+    'django.contrib.gis',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -70,10 +71,10 @@ WSGI_APPLICATION = 'KRLocalisation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'krlocalisation',
-        'USER': 'nokomis',
-        'PASSWORD': 'tagada',
+        'USER': 'patjouk',
+        'PASSWORD': '?kgi8fbm!',
         'HOST': 'localhost',
         'PORT': '',
     }
