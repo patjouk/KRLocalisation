@@ -4,5 +4,5 @@ from .models import Restaurant
 class TableauRestaurant(tables.Table):
     class Meta:
         model = Restaurant
-        exclude = ('num_entree', 'latitude', 'longitude')
+        exclude = ('num_entree', 'latitude', 'longitude', 'geom')
         attrs = {"class": "paleblue"}

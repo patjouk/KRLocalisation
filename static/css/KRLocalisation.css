@@ -3,6 +3,28 @@ h1 a {
     font-family: 'Lobster';
 }
 
+h4 {
+    font-family: 'Lobster';
+}
+
+/* creation d'espace vide pour aérer la page */
+  .espace {
+     margin-top: 2cm;
+  }
+
+     .leaflet-container {  /* all maps */
+        width:  800px;
+        height: 450px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    }
+
+    #specialbigmap {
+        height: 800px;
+    }
+
 body {
     padding-left: 15px;
 }
