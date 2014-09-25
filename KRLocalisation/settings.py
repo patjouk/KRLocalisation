@@ -104,3 +104,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# Configuration de leaflet
+LEAFLET_CONFIG = {
+        'DEFAULT_CENTER': (48.8676041,2.3362687),
+        'DEFAULT_ZOOM': 13,
+        'MIN_ZOOM': 3,
+        'MAX_ZOOM': 18,
+}

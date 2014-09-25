@@ -1,8 +1,29 @@
 {% extends 'restaurant/base.html' %}
 {% load render_table from django_tables2 %}
+{% load leaflet_tags %}
+{% load geojson_tags %}
 
+{% block extra_assets %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+{% endblock %}
 
 {% block content %}
+
+    {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
+
+    <script type="text/javascript">
+function main_map_init (map, options) {
+    var dataurl = '{% url "data" %}';
+    // Download GeoJSON via Ajax
+    $.getJSON(dataurl, function (data) {
+        // Add GeoJSON layer
+        L.geoJson(data).addTo(map);
+    });
+
+}
+    </script>
+
         <div class="tableau">
 {% render_table restaurants %}
         </div>
