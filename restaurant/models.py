@@ -30,6 +30,5 @@ class Restaurant(models.Model):
 
     objects = models.GeoManager()
 
-
     def __str__(self):
         return self.nom

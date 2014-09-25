@@ -12,14 +12,23 @@
 
         <h4 class="text-center">Carte de localisation des restaurants coréens de Paris</h4>
 
+
     {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
     <script type="text/javascript">
+    function onEachFeature(feature, layer) {
+    // does this feature have a property named popupContent?
+    if (feature.properties && feature.properties.nom) {
+        layer.bindPopup(feature.properties.nom);
+    }
+}
 function main_map_init (map, options) {
-    var dataurl = '{% url "data" %}';
+    var dataurl = '{% url "popup" %}';
     // Download GeoJSON via Ajax
     $.getJSON(dataurl, function (data) {
         // Add GeoJSON layer
-        L.geoJson(data).addTo(map);
+        L.geoJson(data, {
+    onEachFeature: onEachFeature
+}).addTo(map);
     });
 
 }
