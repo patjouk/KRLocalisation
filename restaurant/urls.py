@@ -8,7 +8,5 @@ from restaurant.models import Restaurant
 urlpatterns = patterns('',
     url(r'^$', 'restaurant.views.tableau_donnees'),
     url(r'^cartographie_simple/', 'restaurant.views.cartographie_simple'),
-    url(r'^data.geojson$', GeoJSONLayerView.as_view(model=Restaurant, geometry_field='geom'), name='data'),
-    url(r'^popup.geojson$', GeoJSONLayerView.as_view(model=Restaurant, geometry_field='geom', properties=['nom']), name='popup'),
-
+    url(r'^data.geojson$', GeoJSONLayerView.as_view(model=Restaurant, geometry_field='geom', properties=['nom']), name='data'),
 )

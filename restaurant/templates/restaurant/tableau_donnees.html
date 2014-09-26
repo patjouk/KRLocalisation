@@ -22,7 +22,7 @@
     }
 }
 function main_map_init (map, options) {
-    var dataurl = '{% url "popup" %}';
+    var dataurl = '{% url "data" %}';
     // Download GeoJSON via Ajax
     $.getJSON(dataurl, function (data) {
         // Add GeoJSON layer
