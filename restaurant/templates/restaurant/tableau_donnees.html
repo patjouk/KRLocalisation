@@ -34,6 +34,14 @@ function main_map_init (map, options) {
 }
     </script>
 
+    <button class="espace" class="button" onclick="$('#formulaire').toggle();">Filtrer le tableau</button>
+
+    <div id="formulaire" style="display: none">
+    <form action="" method="get">
+        {{ filtre.form.as_p }}
+        <input type="submit" />
+    </form>
+    </div>
 
         <div class="tableau, espace">
             <h4 class="text-center">Liste des restaurants coréens de Paris</h4>

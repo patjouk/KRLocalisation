@@ -4,9 +4,10 @@ from .models import Restaurant
 from .tables import TableauRestaurant, FiltreRestaurant
 
 def tableau_donnees(request):
-        tabrestaurants = TableauRestaurant(Restaurant.objects.order_by('nom').all())
-        RequestConfig(request, paginate={"per_page":200}).configure(tabrestaurants)
-        return render(request, 'restaurant/tableau_donnees.html', {"restaurants": tabrestaurants})
+    f = FiltreRestaurant(request.GET, queryset=Restaurant.objects.order_by('nom').all())
+    tabrestaurants = TableauRestaurant(f)
+    RequestConfig(request, paginate={"per_page":200}).configure(tabrestaurants)
+    return render(request, 'restaurant/tableau_donnees.html', {"restaurants": tabrestaurants, 'filtre': f})
 
 def cartographie_simple(request):
     restaurants = Restaurant.objects.all()
