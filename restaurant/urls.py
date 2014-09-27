@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', 'restaurant.views.tableau_donnees'),
     url(r'^cartographie_simple/', 'restaurant.views.cartographie_simple'),
     url(r'^data.geojson$', GeoJSONLayerView.as_view(model=Restaurant, geometry_field='geom', properties=['nom']), name='data'),
+    url(r'^list$', views.list_restaurant)
 )

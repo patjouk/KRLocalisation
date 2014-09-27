@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
+import django_filters
 
 class Restaurant(models.Model):
     num_entree = models.IntegerField(primary_key=True)
@@ -32,3 +33,5 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.nom
+
+

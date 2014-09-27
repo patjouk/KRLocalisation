@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'djgeojson',
     'leaflet',
+    'django_filters',
 )
 
 MIDDLEWARE_CLASSES = (
