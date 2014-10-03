@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django_tables2 import RequestConfig
 from .models import Restaurant
 from .tables import TableauRestaurant, FiltreRestaurant
+from django.views.generic.detail import DetailView
 
 def tableau_donnees(request):
     f = FiltreRestaurant(request.GET, queryset=Restaurant.objects.order_by('nom').all())
@@ -16,3 +17,10 @@ def cartographie_simple(request):
 def list_restaurant(request):
     f = FiltreRestaurant(request.GET, queryset=Restaurant.objects.all())
     return render(request, 'restaurant/tableau_donnees_trie.html', {'filtre': f})
+
+class RestaurantDetail(DetailView):
+    model = Restaurant
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantDetail, self).get_context_data(**kwargs)
+        context['restaurant_list'] = Restaurant.objects.all()
+        return context
