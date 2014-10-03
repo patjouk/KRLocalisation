@@ -20,7 +20,3 @@ def list_restaurant(request):
 
 class RestaurantDetail(DetailView):
     model = Restaurant
-    def get_context_data(self, **kwargs):
-        context = super(RestaurantDetail, self).get_context_data(**kwargs)
-        context['restaurant_list'] = Restaurant.objects.all()
-        return context

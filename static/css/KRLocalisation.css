@@ -28,3 +28,18 @@ h4 {
 body {
     padding-left: 15px;
 }
+
+/* création de 2 colonnes pour faire une page détails qu'elle est belle */
+
+#wrap {
+   width:600px;
+   margin:0 auto;
+}
+#left_col {
+   float:left;
+   width:300px;
+}
+#right_col {
+   float:right;
+   width:300px;
+}

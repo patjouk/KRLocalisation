@@ -21,7 +21,7 @@
         layer.bindPopup(feature.properties.nom);
     }
 }
-function main_map_init (map, options) {
+    function main_map_init (map, options) {
     var dataurl = '{% url "data" %}';
     // Download GeoJSON via Ajax
     $.getJSON(dataurl, function (data) {

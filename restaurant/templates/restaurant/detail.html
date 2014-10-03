@@ -1,7 +1,89 @@
 {% extends "restaurant/base.html" %}
+{% load leaflet_tags %}
+{% load geojson_tags %}
+
+{% block extra_assets %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+{% endblock %}
 
 {% block content %}
-<h1> {{ restaurant }} </h1>
-<p>{{ object.content }}</p>
+
+    <div id="wrap">
+        <div id="left_col">
+    <h1> {{ object }} </h1>
+        </div>
+    <div id="right_col">
+        {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
+    <script type="text/javascript">
+    function main_map_init (map, options) {
+    var dataurl = '{% url "data" %}';
+    // Download GeoJSON via Ajax
+    $.getJSON(dataurl, function (data) {
+        // Add GeoJSON layer
+        L.geoJson(data, {
+    onEachFeature: onEachFeature
+}).addTo(map);
+    });
+}
+    </script>
+    </div>
+    </div>
+
+<p>Nom en coréen : {{ object.nom_coreen }}</p>
 <p>Adresse : {{ object.adresse }}</p>
+<p>Numéro de téléphone : {{ object.num_tel }}</p>
+<p>Numéro Siret : {{ object.num_siret }}</p>
+<p>Propriétaire : {{ object.proprietaire }}</p>
+<p>Propriétaire (coréen) : {{ object.proprietaire_coreen }}</p>
+<p>Date d'immatriculation : {{ object.date_immatriculation }}</p>
+
+     {% if object.site_web %}
+    <p>Site web : {{ object.site_web }}</p>
+    {% endif %}
+
+<p>Statut de la société : {{ object.statut_societe }}</p>
+
+    {% if object.contact == True %}
+    <p>Déjà contacté</p>
+    {% else %}
+    <p>Pas encore contacté</p>
+    {% endif %}
+
+    {% if object.interview == True %}
+    <p>Déjà interviewé</p>
+    {% else %}
+    <p>Pas encore interviewé</p>
+    {% endif %}
+
+    {% if object.annuaire_alloparis == True %}
+    <p>Dans l'annuaire Alloparis</p>
+    {% else %}
+    <p>N'est pas dans l'annuaire Alloparis</p>
+    {% endif %}
+
+    {% if object.annuaire_hansik == True %}
+    <p>Dans l'annuaire Hansik</p>
+    {% else %}
+    <p>N'est pas dans l'annuaire Hansik</p>
+    {% endif %}
+
+
+    {% if object.radiation %}
+    <p>A été radié</p>
+    {% endif %}
+
+        {% if object.date_radiation %}
+    <p>Date de radiation : {{ object.date_radiation }}</p>
+    {% endif %}
+
+
+     {% if object.nolebang %}
+    <p>A un nolebang</p>
+    {% endif %}
+
+    {% if object.notes %}
+    <p>Notes : {{ object.notes }}</p>
+    {% endif %}
+
 {% endblock %}
