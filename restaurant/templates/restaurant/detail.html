@@ -16,8 +16,10 @@
     <div id="right_col">
     {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
     <script type="text/javascript">
-      var restaurant = {{ object.geom|geojsonfeature|safe }};
-      new L.geoJson(restaurant).addTo(map);
+        function main_map_init (map, options) {
+            var restaurant = {{ object.geom|geojsonfeature|safe }};
+            L.geoJson(restaurant).addTo(map);
+        }
     </script>
 
 
