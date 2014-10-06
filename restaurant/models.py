@@ -18,7 +18,7 @@ class Restaurant(models.Model):
     proprietaire_coreen = models.CharField(max_length=100)
     date_immatriculation = models.DateField(blank=True, null=True)
     date_radiation = models.DateField(blank=True, null=True)
-    site_web = models.URLField()
+    site_web = models.URLField(blank=True)
     statut_societe = models.CharField(max_length=100)
     contact = models.BooleanField(default=False)
     interview = models.BooleanField(default=False)
@@ -34,3 +34,7 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.nom
 
+
+class Photo(models.Model):
+    restaurant = models.ForeignKey(Restaurant, related_name="photos")
+    img = models.ImageField()

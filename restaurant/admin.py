@@ -1,4 +1,12 @@
 from django.contrib.gis import admin
-from .models import Restaurant
+from .models import Restaurant, Photo
 
-admin.site.register(Restaurant, admin.OSMGeoAdmin)
+
+class PhotoInline(admin.TabularInline):
+    model = Photo
+
+
+class RestaurantAdmin(admin.OSMGeoAdmin):
+    inlines = [PhotoInline]
+
+admin.site.register(Restaurant, RestaurantAdmin)
