@@ -14,19 +14,13 @@
     <h1> {{ object }} </h1>
         </div>
     <div id="right_col">
-        {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
+    {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
     <script type="text/javascript">
-    function main_map_init (map, options) {
-    var dataurl = '{% url "data" %}';
-    // Download GeoJSON via Ajax
-    $.getJSON(dataurl, function (data) {
-        // Add GeoJSON layer
-        L.geoJson(data, {
-    onEachFeature: onEachFeature
-}).addTo(map);
-    });
-}
+      var restaurant = {{ object.geom|geojsonfeature|safe }};
+      new L.geoJson(restaurant).addTo(map);
     </script>
+
+
     </div>
     </div>
 
