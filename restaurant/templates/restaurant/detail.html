@@ -82,4 +82,8 @@
     <p>Notes : {{ object.notes }}</p>
     {% endif %}
 
+    {% for photo in object.photos.all %}
+    <a href="{{ photo.img.url }}"> {{ photo.img }} </a>
+    {% endfor %}
+
 {% endblock %}
