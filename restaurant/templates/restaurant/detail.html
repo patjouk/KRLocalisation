@@ -83,7 +83,7 @@
     {% endif %}
 
     {% for photo in object.photos.all %}
-    <a href="{{ photo.img.url }}"> {{ photo.img }} </a>
+    <a href="{{ photo.img.url }}" class="strip"> {{ photo.img }} </a>
     {% endfor %}
 
 {% endblock %}
