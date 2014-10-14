@@ -9,84 +9,86 @@
 
 {% block content %}
 
-    <div id="wrap">
-        <div id="left_col">
-    <h1> {{ object }} </h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1> {{ object }} </h1>
+            <p>Nom en coréen : {{ object.nom_coreen }}</p>
+            <p>Adresse : {{ object.adresse }}</p>
+            <p>Numéro de téléphone : {{ object.num_tel }}</p>
+            <p>Numéro Siret : {{ object.num_siret }}</p>
+            <p>Propriétaire : {{ object.proprietaire }}</p>
+            <p>Propriétaire (coréen) : {{ object.proprietaire_coreen }}</p>
+            <p>Date d'immatriculation : {{ object.date_immatriculation }}</p>
+
+            {% if object.site_web %}
+            <p>Site web : {{ object.site_web }}</p>
+            {% endif %}
+
+            <p>Statut de la société : {{ object.statut_societe }}</p>
+
+            {% if object.contact == True %}
+            <p>Déjà contacté</p>
+            {% else %}
+            <p>Pas encore contacté</p>
+            {% endif %}
+
+            {% if object.interview == True %}
+            <p>Déjà interviewé</p>
+            {% else %}
+            <p>Pas encore interviewé</p>
+            {% endif %}
+
+            {% if object.annuaire_alloparis == True %}
+            <p>Dans l'annuaire Alloparis</p>
+            {% else %}
+            <p>N'est pas dans l'annuaire Alloparis</p>
+            {% endif %}
+
+            {% if object.annuaire_hansik == True %}
+            <p>Dans l'annuaire Hansik</p>
+            {% else %}
+            <p>N'est pas dans l'annuaire Hansik</p>
+            {% endif %}
+
+
+            {% if object.radiation %}
+            <p>A été radié</p>
+            {% endif %}
+
+            {% if object.date_radiation %}
+            <p>Date de radiation : {{ object.date_radiation }}</p>
+            {% endif %}
+
+
+            {% if object.nolebang %}
+            <p>A un nolebang</p>
+            {% endif %}
+
+            {% if object.notes %}
+            <p>Notes : {{ object.notes }}</p>
+            {% endif %}
         </div>
-    <div id="right_col">
-    {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
-    <script type="text/javascript">
-        function main_map_init (map, options) {
-            var restaurant = {{ object.geom|geojsonfeature|safe }};
-            L.geoJson(restaurant).addTo(map);
-        }
-    </script>
 
+        <div class="col-md-6">
+            {% leaflet_map "Carte_localisation" callback="window.main_map_init" %}
+            <script type="text/javascript">
+                function main_map_init (map, options) {
+                    var restaurant = {{ object.geom|geojsonfeature|safe }};
+                    L.geoJson(restaurant).addTo(map);
+                }
+            </script>
+        </div>
+</div>
 
+    <div class="row">
+        {% for photo in object.photos.all %}
+        <a href="{{ photo.img.url }}"
+           class="strip"
+           data-strip-group="Groupe d'images"
+           data-strip-caption="{{ photo.img }}"> {{ photo.img }} </a>
+        {% endfor %}
     </div>
-    </div>
-
-<p>Nom en coréen : {{ object.nom_coreen }}</p>
-<p>Adresse : {{ object.adresse }}</p>
-<p>Numéro de téléphone : {{ object.num_tel }}</p>
-<p>Numéro Siret : {{ object.num_siret }}</p>
-<p>Propriétaire : {{ object.proprietaire }}</p>
-<p>Propriétaire (coréen) : {{ object.proprietaire_coreen }}</p>
-<p>Date d'immatriculation : {{ object.date_immatriculation }}</p>
-
-     {% if object.site_web %}
-    <p>Site web : {{ object.site_web }}</p>
-    {% endif %}
-
-<p>Statut de la société : {{ object.statut_societe }}</p>
-
-    {% if object.contact == True %}
-    <p>Déjà contacté</p>
-    {% else %}
-    <p>Pas encore contacté</p>
-    {% endif %}
-
-    {% if object.interview == True %}
-    <p>Déjà interviewé</p>
-    {% else %}
-    <p>Pas encore interviewé</p>
-    {% endif %}
-
-    {% if object.annuaire_alloparis == True %}
-    <p>Dans l'annuaire Alloparis</p>
-    {% else %}
-    <p>N'est pas dans l'annuaire Alloparis</p>
-    {% endif %}
-
-    {% if object.annuaire_hansik == True %}
-    <p>Dans l'annuaire Hansik</p>
-    {% else %}
-    <p>N'est pas dans l'annuaire Hansik</p>
-    {% endif %}
 
 
-    {% if object.radiation %}
-    <p>A été radié</p>
-    {% endif %}
-
-        {% if object.date_radiation %}
-    <p>Date de radiation : {{ object.date_radiation }}</p>
-    {% endif %}
-
-
-     {% if object.nolebang %}
-    <p>A un nolebang</p>
-    {% endif %}
-
-    {% if object.notes %}
-    <p>Notes : {{ object.notes }}</p>
-    {% endif %}
-
-    {% for photo in object.photos.all %}
-    <a href="{{ photo.img.url }}"
-       class="strip"
-       data-strip-group="Groupe d'images"
-       data-strip-caption="{{ photo.img }}"> {{ photo.img }} </a>
-    {% endfor %}
 
 {% endblock %}

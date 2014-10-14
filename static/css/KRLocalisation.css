@@ -21,25 +21,10 @@ h4 {
   margin-right: auto;
     }
 
-    #specialbigmap {
-        height: 800px;
+    #mapdetail {
+        height: 600px;
     }
 
 body {
     padding-left: 15px;
-}
-
-/* création de 2 colonnes pour faire une page détails qu'elle est belle */
-
-#wrap {
-   width:600px;
-   margin:0 auto;
-}
-#left_col {
-   float:left;
-   width:300px;
-}
-#right_col {
-   float:right;
-   width:300px;
 }
