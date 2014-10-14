@@ -85,7 +85,8 @@
     {% for photo in object.photos.all %}
     <a href="{{ photo.img.url }}"
        class="strip"
-       data-strip-group="Groupe d'images"> {{ photo.img }} </a>
+       data-strip-group="Groupe d'images"
+       data-strip-caption="{{ photo.img }}"> {{ photo.img }} </a>
     {% endfor %}
 
 {% endblock %}
