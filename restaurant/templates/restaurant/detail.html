@@ -1,6 +1,7 @@
 {% extends "restaurant/base.html" %}
 {% load leaflet_tags %}
 {% load geojson_tags %}
+{% load thumbnail %}
 
 {% block extra_assets %}
   {% leaflet_js %}
@@ -82,10 +83,12 @@
 
     <div class="row">
         {% for photo in object.photos.all %}
+        <img src="{{ photo.img|thumbnail_url:'miniphoto' }}" alt="{{ photo.img.url }}"/>
         <a href="{{ photo.img.url }}"
            class="strip"
            data-strip-group="Groupe d'images"
-           data-strip-caption="{{ photo.img }}"> {{ photo.img }} </a>
+           data-strip-caption="{{ photo.img }}"> {{ photo.img }}
+        </a>
         {% endfor %}
     </div>
 

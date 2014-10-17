@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'djgeojson',
     'leaflet',
     'django_filters',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,4 +116,10 @@ LEAFLET_CONFIG = {
         'MIN_ZOOM': 3,
         'MAX_ZOOM': 18,
         'RESET_VIEW': False,
+}
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'miniphoto': {'size': (100, 100), 'crop': True},
+    },
 }
