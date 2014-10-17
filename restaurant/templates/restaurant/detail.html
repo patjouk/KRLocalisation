@@ -83,11 +83,12 @@
 
     <div class="row">
         {% for photo in object.photos.all %}
-        <img src="{{ photo.img|thumbnail_url:'miniphoto' }}" alt="{{ photo.img.url }}"/>
+
         <a href="{{ photo.img.url }}"
            class="strip"
            data-strip-group="Groupe d'images"
-           data-strip-caption="{{ photo.img }}"> {{ photo.img }}
+           data-strip-caption="{{ photo.img }}">
+           <img src="{{ photo.img|thumbnail_url:'miniphoto' }}" alt="{{ photo.img.url }}"/>
         </a>
         {% endfor %}
     </div>
