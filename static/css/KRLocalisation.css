@@ -3,6 +3,11 @@ h1 a {
     font-family: 'Lobster';
 }
 
+h2 {
+    color: #4ac3f3;
+    font-family: 'Lobster';
+}
+
 h4 {
     font-family: 'Lobster';
 }
@@ -13,7 +18,6 @@ h4 {
   }
 
      .leaflet-container {  /* all maps */
-        width:  800px;
         height: 450px;
 
   display: block;
@@ -27,4 +31,5 @@ h4 {
 
 body {
     padding-left: 15px;
+    background-color: #f2f4f2;
 }
