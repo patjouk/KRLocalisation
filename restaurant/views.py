@@ -3,7 +3,8 @@ from django_tables2 import RequestConfig
 from .models import Restaurant
 from .tables import TableauRestaurant, FiltreRestaurant
 from django.views.generic.detail import DetailView
-
+import csv
+from django.http import HttpResponse
 def tableau_donnees(request):
     f = FiltreRestaurant(request.GET, queryset=Restaurant.objects.order_by('nom').all())
     tabrestaurants = TableauRestaurant(f)
@@ -20,3 +21,14 @@ def list_restaurant(request):
 
 class RestaurantDetail(DetailView):
     model = Restaurant
+
+def full_csv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="dump.csv"'
+
+    writer = csv.writer(response)
+    for restaurant in Restaurant.objects.all():
+        writer.writerow([restaurant.num_entree, restaurant.nom, restaurant.latitude, restaurant.longitude])
+
+    return response
